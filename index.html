@@ -1,5 +1,44 @@
-서버 로딩 화면
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>서버 로딩 화면</title>
+    <style>
+        body { background-color: #111; color: white; text-align: center; padding-top: 20%; font-family: sans-serif; }
+        /* 유튜브 플레이어 화면을 안 보이게 숨깁니다 */
+        .video-container {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <h1>서버에 연결 중입니다... 환영합니다!</h1>
     
+    <!-- 이 공간에 자바스크립트가 무작위로 뽑은 유튜브 영상을 집어넣습니다 -->
+    <div class="video-container" id="player-container"></div>
 
+    <script>
+        // 1. 재생할 유튜브 영상들의 고유 ID 목록입니다.
+        var videoIds = [
+            "9uwKBB7tLwY", // 1번 영상
+            "bRvdDCQ4u90", // 2번 영상
+            "F_VWec4Tnx8"  // 3번 영상
+        ];
 
-    서버에 연결 중입니다... 환영합니다!
+        // 2. 목록(3개) 중 무작위로 숫자 하나를 뽑아 해당 영상 ID를 선택합니다.
+        var randomIndex = Math.floor(Math.random() * videoIds.length);
+        var randomVideoId = videoIds[randomIndex];
+
+        // 3. 선택된 영상 ID를 바탕으로 유튜브 자동 재생 코드를 만듭니다.
+        var iframeHtml = '<iframe width="100" height="100" src="https://www.youtube.com/embed/' + randomVideoId + '?autoplay=1&loop=1&playlist=' + randomVideoId + '" frameborder="0" allow="autoplay"></iframe>';
+        
+        // 4. 만들어진 코드를 HTML에 삽입하여 재생시킵니다.
+        document.getElementById("player-container").innerHTML = iframeHtml;
+    </script>
+</body>
+</html>
